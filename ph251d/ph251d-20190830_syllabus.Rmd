@@ -94,8 +94,7 @@ rm(list=ls())
 - Course Control Number: 29489 (auditors welcome if there is seating room)
 - Units/credits: 2 units
 - Office hours: TBD
-- Course syllabus: bCourses or
-  [(Link to Dropbox PDF)](https://www.dropbox.com/s/pk25hsk60q9s2so/ph251d-20190830_syllabus.pdf?dl=0)
+- Course syllabus: https://github.com/taragonmd/teaching/ (ph251d folder)
 - Instructors:
 
 | Name            | Affiliation               | Email                    |        Phone |

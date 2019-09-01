@@ -1,0 +1,399 @@
+---
+title: \Large\sffamily\bfseries PH 251D Applied Epidemiology Using R, Fall 2019
+author: \normalfont\normalsize\sffamily Tomás J. Aragón, MD, DrPH$^{1,2,3,4,*}$
+output: 
+  pdf_document:
+    toc: false
+    toc_depth: 2
+    keep_tex: false
+    fig_caption: true
+    latex_engine: pdflatex
+    number_sections: true
+documentclass: article
+classoption: oneside
+geometry: left=1.25in, right=1.25in, top=0.85in, footskip=0.75in
+subparagraph: yes
+header-includes:
+  \usepackage{lastpage,fancyhdr}
+  \pagestyle{fancy}
+  \fancyhf{}
+  \lhead{\sf\em PH 251D Applied Epidemiology Using R, Fall 2019}
+  \rhead{\sf\em Tomás J. Aragón}
+  \lfoot{\sf\em UC Berkeley School of Public Health}
+  \cfoot{\sf\em p.~\thepage\ of \pageref{LastPage}}
+  \rfoot{\sf\em \url{https://taragonmd.github.io}}
+  \usepackage{amsmath,amssymb}
+  \usepackage{changepage}
+  \usepackage{textcomp,marvosym}
+  \usepackage{cite}
+  \usepackage{nameref,hyperref}
+  \usepackage[left]{lineno}
+  \usepackage{microtype}
+  \usepackage{enumitem}
+  \setitemize{noitemsep}
+  \DisableLigatures[f]{encoding = *, family = * }
+  \usepackage[table,dvipsnames]{xcolor}
+  \usepackage{array,booktabs}
+  \usepackage[font={sf},labelsep=period]{caption}
+  \setlength{\parskip}{1pt}
+  \setlength{\parindent}{15pt}
+  \renewcommand{\footrule}{\hrule height 1.5pt \vspace{2mm}}
+  \usepackage{pdfpages}
+  \usepackage{lipsum}
+  \usepackage{todonotes}
+  \presetkeys{todonotes}{fancyline,size=\scriptsize,color=blue!10}{}
+  \usepackage{varioref}
+  \usepackage{marginnote}
+  \renewcommand*{\marginfont}{\color{ForestGreen}\sl\footnotesize}
+  \newcommand{\mn}{\marginnote}
+  \usepackage{titlesec}
+  \titleformat{\section}
+    {\large\sffamily\bfseries}
+    {\thesection}
+    {0.5em}
+    {}
+  \titleformat{\subsection}
+    {\sffamily\bfseries}
+    {\thesubsection}
+    {0.5em}
+    {}
+graphics: yes
+linkcolor: Green
+urlcolor: BrickRed
+citecolor: Green
+# spacing: double
+bibliography: /Users/tja/Library/texmf/bibtex/bib/phds.bib 
+link-citations: yes
+csl: /Users/tja/Dropbox/tja/texmf/bibtex/csl/styles/vancouver-brackets.csl 
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+rm(list=ls())
+```
+
+\begin{flushleft}
+\sffamily\small
+\hspace{15pt}$^1$ Health Officer, City \& County of San Francisco\\ 
+\hspace{15pt}$^2$ Director, Population Health Division, SFDPH\\
+\hspace{15pt}$^3$ Clinical faculty, UC Berkeley School of Public Health, Epidemiology\\
+\hspace{15pt}$^4$ Affiliate faculty, UCSF Department of Epidemiology \& Biostatistics\\
+\hspace{15pt}* Email:
+\href{mail:aragon@berkeley.edu}{aragon@berkeley.edu}, Cell: 415-515-5734\\
+\hspace{23pt}Web: \url{https://taragonmd.github.io/} \hfill Updated: \today
+\end{flushleft}
+<!--
+\linenumbers
+-->
+
+# Basic Information
+
+- Course: Public Health 251D
+- Course title: Applied Epidemiology Using R 
+- Day, time, and location: Fridays, 4pm--6pm, Berkeley Way West 1203
+- Course Control Number: 29489 (auditors welcome if there is seating room)
+- Units/credits: 2 units
+- Office hours: TBD
+- Course syllabus: bCourses or
+  [(Link to Dropbox PDF)](https://www.dropbox.com/s/pk25hsk60q9s2so/ph251d-20190830_syllabus.pdf?dl=0)
+- Instructors:
+
+| Name            | Affiliation               | Email                    |        Phone |
+|-----------------+---------------------------+--------------------------+--------------|
+| Tomás J. Aragón | SF Dept of Public Health  | aragon@berkeley.edu      | 415.515.5734 |
+| Michael Samuel  | Ca. Dept of Public Health | michael.samuel@sfdph.org | 925.285.2926 |
+| Wayne Enanoria  | SF Dept of Public Health  | wayne.enanoria@sfdph.org | 415.437.6356 |
+
+
+# Course Description
+
+## Prerequisites
+
+- Prior courses: introductory courses in epidemiology and
+  Biostatistics
+- Prior experience: basic epidemiologic programming (e.g., Stata, SAS) 
+- Motivation: relentless commitment to invest time coding in R
+
+
+## Overview of course
+
+This is an intensive one-semester introduction to the R programming
+language for applied epidemiology from a population health data
+science perspective.  **Population health** is "a systems framework
+for studying and improving the health of populations through
+collective action and learning"
+[@Aragon2019_escholarship.org-uc-item-9xg5t30s].  Populations include
+clinical and community populations (neighborhoods, social networks).
+**Population health data science** (PHDS) is ``the art and science of
+transforming data into information and actionable knowledge that
+informs, influences or optimizes decisions[^dq] to protect and improve
+the health and well-being of populations.''
+
+[^dq]: A *decision* is an irrevocable commitment of time or resources towards achieving an objective.  In public health, and in life, decision making is our single, most important activity.  Every decision has an opportunity cost---the loss benefit of the better option not chosen or not considered.  ``Decisions determine destiny'' (Frederick Speakman).
+
+
+PHDS rests on the foundation of **population health thinking** (PHT)
+[@Aragon2018_PopHealthThinking]---a problem-solving, inferential
+framework that uses Bayesian networks for
+
+1. probabilistic reasoning, 
+2. causal inference, and 
+3. decision quality.
+
+PHT supports causal, evidential, and inter-causal reasoning. BNs, and
+it variants (directed acyclic graphs, decision networks), are used for
+causal thinking, study design, counterfactuals, deconfounding,
+decision analysis, and more. R is the ideal programming language to
+learn PHT/PHDS at an introductory level which supports public health
+analysts, practitioners, and researchers to bring value, insights, and
+causal rigor to the trans-disciplinary table of data science (with
+computer scientists, mathematicians, statisticians, subject matter
+experts, etc.).
+
+The core of population health data science is the timely analysis and
+synthesis of data using programming and computing power.  Fortunately
+for us we have R!  R is a freely available, multi-platform (Linux, Mac
+OS, Windows, etc.), versatile, and powerful program for statistical
+computing and graphics (http://www.r-project.org). This course will
+focus on core basics of organizing, managing, and manipulating
+population health data; introduction to R programming; and basic R
+graphics, all applied to PHT/PHDS.  Students will complete and present
+a project in their field of interest.
+
+PHDS has five analytic domains (Figure
+\ref{fig:phds} and Table \ref{tab:phds}):
+
+\begin{figure}[htb]
+\centering
+\includegraphics[width=.9\textwidth]{/Users/tja/images/BayesiaLab_Book_V18_fig1-1.png}
+\caption{The population health data science landscape (source: \url{www.bayesia.com})}
+\label{fig:phds}
+\end{figure}
+
+
+\begin{table}[hbt]
+\centering
+\caption{Population health data science: Levels of analysis}
+\begin{tabular}{cll}
+\toprule
+Level&Analytic domain & Description\\
+\midrule
+1& Description& surveillance and early detection of events\\
+&& prevalence and incidence of risks and outcomes\\
+2& Prediction& early prediction and targeting of interventions\\
+3& Explanation & discovery of new causal effects and pathways\\
+& (causal inference)&estimation of intervention effectiveness\\
+4& Simulation&modeling for epidemiologic or decision insights\\
+5& Optimization$^1$&informing or optimizing decisions, processes, or results\\
+\bottomrule
+\end{tabular}
+\label{tab:phds}
+\end{table}
+
+
+## Intended audience
+
+This course is intended for epidemiologists, medical epidemiologists,
+data analysts, and demographers that want an introduction to the R
+language for population health data science applications. 
+
+
+## Methods of instruction
+
+Lecture and computer demonstration.  You are welcome to bring your
+laptop with R pre-installed.
+ 
+
+# Schedule
+
+| Day     | Dates      | Wk | Content or milestone                          | Speaker |
+|---------+------------+----+-----------------------------------------------+---------|
+| Wed     | Aug 21     |    | FALL SEMESTER BEGINS                          |         |
+| Wed     | Aug 28     |    | University instruction Begins                 |         |
+| Fri     | Aug 30     |  1 | **Chap 1:** Getting started with R (1st day)  |         |
+| Mon     | Sep 03     |    | *Academic and Administrative Holiday*         |         |
+| Fri     | Sep 06     |  2 | **Chap 2:** Working with R data objects 1     | TJA     |
+| Fri     | Sep 13     |  3 | **Chap 3:** Working with R data objects 2     | TJA     |
+| Fri     | Sep 20     |  4 | **Chap 4:** Managing population health data 3 | TJA     |
+| Fri     | Sep 27     |  5 | **Chap 4:** Managing population health data 4 | TJA     |
+| Fri     | Oct 04     |  6 | **Chap 5:** R programming 1                   | TJA     |
+| Fri     | Oct 11     |  7 | **Chap 5:** R programming 2                   | TJA     |
+| Fri     | Oct 18     |  8 | Graphing population health data 1             | MCS     |
+| Fri     | Oct 25     |  9 | PH Data Science Analytics 1                   | TJA     |
+| Fri     | Nov 01     | 10 | Graphing population health data 2             | MCS     |
+| Fri     | Nov 08     | 11 | PH Data Science Analytics 2                   | TJA     |
+| Fri     | Nov 15     | 12 | PH Data Science Analytics 3                   | TJA     |
+| Fri     | Nov 22     | 13 | PH Data Science Analytics 4                   | TJA     |
+| Thu-Fri | Nov 28--29 |    | *Academic and Administrative Holiday*         |         |
+| Fri     | Dec 06     | 14 | Student project presentations                 | TJA     |
+| Mon-Fri | Dec 09-13  |    | Reading/Review/Recitation Week                |         |
+| Mon-Fri | Dec 16--20 |    | Final Examinations week                       |         |
+
+
+
+# Learning outcomes/goals/objectives
+
+1. Use R as a scientific calculator and a functional spreadsheet;
+2. Enter, manage, and manipulate population health data in R;
+3. Conduct basic population health analyses in R;
+4. Graphically display population health data;
+5. Write basic R functions (programs);
+6. Learn basic literate programming using R markdown; and 
+7. Understand how to construct simple Bayesian networks for
+   probabilistic reasoning, causal inference, and decision analysis.
+
+# Materials
+
+## Books
+
+1. Tomás J Aragón (2019). *Population Health Data Science with
+   R---Transforming data into actionable knowledge*. Available
+   from: <https://bookdown.org/taragonmd/phds/> (**REQUIRED**). 
+2. R Foundation. *An Introduction to R*, Freely available at
+   http://cran.r-project.org/doc/manuals/R-intro.pdf (also comes with
+   default installation) (**REQUIRED**)
+3. Judea Pearl & Dana Mackenzie (2018). *The Book of Why: The new
+   science of cause and effect*. Basic Books; 1 ed. (highly
+   recommended)
+4. Judea Pearl, Madelyn Glymour, Nicholas P. Jewell (2016). *Causal
+   Inference in Statistics: A Primer*. Wiley (recommended)
+5. Marco Scutari (2014). *Bayesian Networks: With Examples in R* Chapman and
+   Hall/CRC (recommended)
+
+
+## Data sets
+
+You can access data for this course from here:
+
+- https://github.com/taragonmd/data (download data sets used in book chapters)
+- http://methods.sagepub.com/datasets
+
+
+
+## Software
+1. Install R on your computer (visit http://cran.cnr.berkeley.edu/)
+2. Install RStudio on your computer (visit http://www.rstudio.com)
+3. Set up RPubs account at Rpubs.com (visit http://rpubs.com/)
+4. Creating \LaTeX\ documents (optional): use \LaTeX\ to create high
+   quality typeset documents.
+
+RStudio also generates \LaTeX\ documents, but it must be installed on
+your computer.  For MS Window, install Mik\TeX.  For Mac OS, install
+Mac\TeX.  For Linux, install \TeX\ Live.  Alternatively, install the
+`tinytex` package in R. `tinytex` is a cross-platform helper functions
+to install and maintain \TeX\ Live, and compile \LaTeX\ documents.
+
+
+## Websites
+
+1. bCourses: https://bcourses.berkeley.edu/ (UC Berkeley Learning
+   Management System)
+2. PHDS: <https://taragonmd.github.io/project/teaching/>
+
+
+# Requirements: exams, quizzes, assignments
+
+## Assignments
+
+1. Complete Homework assignments. 
+2. Complete 2 projects (see below)
+
+## Homework
+
+1. Problems will be assigned from the end of each chapter.
+2. Homework will be due 1 week after I finish covering chapter in
+   class. Check bCourses.
+3. Submit complete homework as described in bCourses.
+
+## Project 1
+
+TBD
+
+## Project 2
+
+TBD
+
+# Policies: grading procedures, attendance, participation, etc
+
+## Grading
+
+For registered UC Berkeley/Extension students: Units: 2; Grading:
+Letter or S/U
+
+Grading will be based on
+
+- 30% Homework,
+- 30% Student Project 1, and
+- 40% Student Project 2.
+
+Satisfactory (S) or Passed (P) is at a minimum level of B.
+
+Table: Letter grading scale
+
+| Percent | Grade |   | Percent | Grade |
+|---------+-------+---+---------+-------|
+| 100--94 | A     |   |  75--73 | C     |
+|  93--90 | A-    |   |  72--70 | C-    |
+|  89--86 | B+    |   |  69--66 | D+    |
+|  85--83 | B     |   |  65--63 | D     |
+|  82--80 | B-    |   |  62--60 | D-    |
+|  79--76 | C+    |   |    < 60 | F     |
+  
+
+## Attendance
+
+Attendance is very important to learn the material. Please provide
+feedback on how I can improve my instruction of the material.
+
+
+## R resources 
+
+- Official R manuals:
+  http://cran.r-project.org/manuals.html
+- Contributed R tutorials:
+  http://cran.r-project.org/other-docs.html
+- UCB Intelligent research design for data intensive social science:
+  http://dlab.berkeley.edu/
+- Resources to help you learn and use R:
+  https://stats.idre.ucla.edu/r/
+- R User Groups:
+  http://r-users-group.meetup.com/
+- Bay Area useR Group (R Programming Language):
+  https://www.meetup.com/R-Users/
+- The East Bay R Language Beginners Group:
+  https://www.meetup.com/r-enthusiasts/
+
+
+
+# Resources: tips for success, glossaries, links, academic support services, etc
+
+## Academic Calendar and Student Accommodations - Campus Policies and Guidelines
+
+https://teaching.berkeley.edu/academic-calendar-and-student-accommodations-campus-policies-and-guidelines
+
+## Student resources
+
+Available here: https://sph.berkeley.edu/current-students/student-resources
+
+## Policies for all Courses offered at SPH
+
+Available here: https://berkeley.app.box.com/s/knh3rbk9ikgvmca4ymy93msgj9bkebq5
+
+
+# Safety and Emergency Preparedness
+
+In the event that we need to evacuate the
+building we will gather and meet at the TBD side of the building.
+
+
+# UC Berkeley Honor Code (link is external)
+
+The Honor Code is available here: <https://teaching.berkeley.edu/berkeley-honor-code>
+
+# References {-}
+
+\setlength{\parindent}{-0.2in}
+\setlength{\leftskip}{0.2in}
+\setlength{\parskip}{8pt}
+\vspace*{-0.2in}
+\noindent

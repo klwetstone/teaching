@@ -95,6 +95,7 @@ rm(list=ls())
 - Units/credits: 2 units
 - Office hours: TBD
 - Course syllabus: https://github.com/taragonmd/teaching/ (ph251d folder)
+- Piazza discussion site: https://piazza.com/berkeley/fall2019/pbhlth251d/home
 - Instructors:
 
 | Name            | Affiliation               | Email                    |        Phone |

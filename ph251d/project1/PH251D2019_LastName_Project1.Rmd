@@ -1,7 +1,7 @@
 ---
-title: "PH251D Fall 2018 - Project 1"
+title: "PH251D Fall 2019 - Project 1"
 author: "FirstName MI LastName"
-date: "10/29/2018"
+date: "2019-MM-DD"
 output: pdf_document
 ---
 
@@ -70,7 +70,7 @@ the week of the year.
 
 
 ```{r}
-## working with date
+## working with dates
 ```
 
 ## 5. Simple two-way analysis

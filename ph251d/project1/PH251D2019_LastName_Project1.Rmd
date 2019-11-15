@@ -1,0 +1,150 @@
+---
+title: "PH251D Fall 2018 - Project 1"
+author: "FirstName MI LastName"
+date: "10/29/2018"
+output: pdf_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+Download this Rmarkdown template (`PH251D2019_LastName_Project1.Rmd`)
+and edit.
+
+Create a project folder called `project1` on your computer. You will
+put all your Project 1 files in this folder.
+
+
+Use R Markdown to demonstrate the following skills:
+
+## 1. Using the `source` function
+
+Create a R script file named `problem1.R` and save it into your
+`project1` folder. Type `print("Hello World")` and `source` this file.
+
+```{r}
+## R code to source file here
+```
+
+## 2. Read an ASCII data set
+
+The Evans data set (`evans.txt`) is here: <https://github.com/taragonmd/data>.
+
+Alternatively, here is the raw Evans data set: <https://raw.githubusercontent.com/taragonmd/data/master/evans.txt>.
+
+Demonstrate reading the Evans data file (evans.txt) to create a data
+frame, and use the `str` function to explore the structure of the data
+set. The data dictionary is in Appendix C of the PHDS book.
+
+Show the R code chunk and results below.
+
+```{r}
+## explore structure of Evan County data
+```
+
+## 3. Discretizing a continuous variable into a categorical variable
+
+Use the `cut` function to discretize age into the following age
+categories and make a table of counts and a table of proportions.
+
+- 30-39
+- 40-49
+- 50-59
+- 60-69
+- $>$70
+
+
+Be sure to pay attention to age interval transitions.
+
+```{r}
+## discretizing age into categories
+```
+
+## 4. Working with dates and times
+
+President President Donald Trump was elected on "November 8,
+2016". Convert this character string into a R date object. Show how to
+use R to display (a) the Julian date; (b) the day of the week, and (c)
+the week of the year.
+
+
+```{r}
+## working with date
+```
+
+## 5. Simple two-way analysis
+
+Create a simple 2x2 table of smoking (`smk`) and coronary heart
+disease (`chd`). Use the `fisher.test` on this 2x2 table and describe
+your findings.
+
+```{r}
+## 2x2 table
+```
+
+## 6. Write your own function
+
+Now, write a function to calculate the risk ratio of your 2x2 table
+above. The exposure is smoking status and the outcome is coronary
+heart disease.
+
+
+```{r}
+## function to calculate the risk ratio
+```
+
+## 7. Nested `for` loops
+
+Write a nested `for` loops to create a mulitiplication table for the
+numbers 1 to 10.
+
+```{r}
+x <- 1:10
+mtab <- matrix(NA, 10, 10)
+for(i in x){
+  for(j in x){
+    mtab[i, j] <- x[i] * x[j]
+  }
+}
+mtab
+```
+
+## 8. Create a PNG graph and save file
+
+From the Evans data create a histogram of age (`age`).
+Label with a title and axis labels. Output to a PNG file using the
+`png` function. Hint is provided.
+
+```{r}
+png(file = "myplot.png") # start PNG device 
+  ## enter code below to create histogram
+dev.off() # close device
+```
+
+## 9. Display PNG file in your Rmarkdown document
+
+Using Rmarkdown syntax, display the PNG file you created above. Hint:
+use the `include_graphics` function from the `knitr` package.
+
+```{r, out.width='80%', fig.align='center'}
+##  enter code below
+```
+
+## 10. Using regular expressions
+
+Here are the California counties: <https://raw.githubusercontent.com/taragonmd/data/master/calcounty.txt>
+
+Read in data using the `scan` function. Hint provided below.
+
+Remove the "California" entry.
+
+Use regular expressions to identify and display the County names that
+start with `"San "` and end with `"o"`.
+
+```{r}
+cac <-
+scan('https://raw.githubusercontent.com/taragonmd/data/master/calcounty.txt',
+     what="")
+## enter code below
+```

@@ -16,7 +16,7 @@ Create a project folder called `project1` on your computer. You will
 put all your Project 1 files in this folder.
 
 
-Use R Markdown to demonstrate the following skills:
+Use this template and R Markdown to demonstrate the following skills:
 
 ## 1. Using the `source` function
 
@@ -94,21 +94,16 @@ heart disease.
 ## function to calculate the risk ratio
 ```
 
-## 7. Nested `for` loops
+## 7. 
 
-Write a nested `for` loops to create a mulitiplication table for the
-numbers 1 to 10.
+Now, use the `xtabs` function to create a 3-D array object of `chd`, `hpt`,
+and `smk`. Now use the `addmargins` function on this object.
 
 ```{r}
-x <- 1:10
-mtab <- matrix(NA, 10, 10)
-for(i in x){
-  for(j in x){
-    mtab[i, j] <- x[i] * x[j]
-  }
-}
-mtab
+## demo of xtabs function below
+## demo of addmargins function below
 ```
+
 
 ## 8. Create a PNG graph and save file
 

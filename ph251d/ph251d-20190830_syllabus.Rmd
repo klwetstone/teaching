@@ -266,8 +266,7 @@ laptop with R pre-installed.
 You can access data for this course from here:
 
 - https://github.com/taragonmd/data (download data sets used in book chapters)
-- http://methods.sagepub.com/datasets
-
+- http://biostat.mc.vanderbilt.edu/wiki/Main/DataSets (Vanderbilt University)
 
 
 ## Software

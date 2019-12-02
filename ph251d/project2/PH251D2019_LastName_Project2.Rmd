@@ -95,7 +95,7 @@ ppv <- (sens * prior) / (sens * prior + (1 - spec) *(1 - prior))
 
 Install the `bnlearn` package as described here: <http://www.bnlearn.com/>.
 The causal model is AUD -> CAGE. Create a Bayesian network (BN) model
-by fitting the causal model to data.
+by fitting the causal model to data (I have done this for you).
 
 ```{r, fig.width=3, fig.height=2, fig.align="center"}
 library(bnlearn)

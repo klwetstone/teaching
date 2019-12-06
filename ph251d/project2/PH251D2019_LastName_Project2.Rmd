@@ -157,7 +157,7 @@ terms of the following:
 ## 7. Deconfounding: IPW with marginal structural model (MSM)
 
 Repeat the analysis above using IPW/marginal structural model (MSM)
-that using the propensity scores and the generalized linear model
+that uses the propensity scores and the generalized linear model
 (`glm` function in R). Edit the R code from Section 4.3.1.2 and report
 on the average causal effect (ACE) in terms of the following:
 
